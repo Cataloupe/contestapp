@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # version of ruby for Heroku
-
+ruby '2.1.7'
 # Production only, use the below
 group :production do
 	gem "rails_12factor"
@@ -14,7 +14,25 @@ end
 # Use sqlite3 as the database for Active Record
 group :development, :test do
 	gem 'sqlite3'
+	# Helpful gems
+	gem "better_errors" # improves error handling
+	gem "binding_of_caller" # used by better errors
+
+	# Testing frameworks
+	gem 'rspec-rails' # testing framework
+	gem "factory_girl_rails" # use factories, not fixtures
+	gem "capybara" # simulate browser activity
+	gem "fakeweb"
+
+	# Automated testing
+	gem 'guard' # automated exeecution of test suite upon changes
+	gem "guard-rspec" # guard integration with rspec
+
+	# only install the rb-fsevent gem if onn Mac OSX
+	gem 'rb-fsevent' # used for Growl notifications
 end
+
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
