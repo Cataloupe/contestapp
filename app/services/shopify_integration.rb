@@ -51,6 +51,8 @@ class ShopifyIntegration
                             email: shopify_order.email,
                             first_name: shopify_order.billing_address.first_name,
                             last_name: shopify_order.billing_address.last_name,
+#                            first_name: shopify_order.first_name,
+#                            last_name: shopify_order.last_name,
                             shopify_order_id: shopify_order.id,
                             order_date: shopify_order.created_at,
                             total: shopify_order.total_price,
