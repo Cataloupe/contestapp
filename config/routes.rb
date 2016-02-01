@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   
 
   get 'dashboard/index'
-
+  # once index created, then kick off contest creation
+  post "create_contest" => "dashboard#create_contest"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

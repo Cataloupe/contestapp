@@ -1,0 +1,61 @@
+<%- content_for :sidebar do -%>
+<h4>New Contest</h4>
+<p>User the form below to run a new Contest. Fields marked with * are required.</p>
+<form>
+	<div class="control-group">
+		<label for="name">Contest Name *</label>
+		<div class="controls">
+			<input type="text" class="text_field" id="name" class="name" require/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="name">Type *</label>
+		<div class="controls">
+			<select id="product" name="product" required>
+				<option>Any Product</option>
+				<optgroup> label="Specific Product">
+					<option>Product A</option>
+					<option>Product B</option>
+				</optgroup>
+			</select>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="name">Order Date Range (optional)</label>
+		<div class="controls">
+			<input type="text" class="text_field" id="from-date" name="from-date"/> to
+			<input type="text" class="text_field" id="to-date" name="to-date"/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="name">Max # (optional)</label>
+		<div class="controls">
+			<input type="text" class="text_field" id="limit" name="limit"/>
+		</div>
+	</div>
+	<div class="from-actions">
+		<input type="submit" value="Submit" class="btn"/>
+		<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+		dashboard_index_path, :class => 'btn' %>
+	</div>
+</form>
+<%- end -%>
+<h1>Contests</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Criteria</th>
+      <th>Winner</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Customer Appreciation Giveaway</td>
+      <td>Purchase made within last 30 days</td>
+      <td>ORder #1010, Adam M</td>
+	  <td>February 1, 2016</td>
+    </tr>
+  </tbody>
+</table>
