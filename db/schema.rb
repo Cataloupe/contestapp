@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202101527) do
+ActiveRecord::Schema.define(version: 20160202111908) do
 
   create_table "accounts", force: true do |t|
     t.string   "shopify_account_url"
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 20160202101527) do
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
+  add_index "contests", ["account_id"], name: "index_contests_on_account_id"
   add_index "contests", ["order_id"], name: "index_contests_on_order_id"
 
   create_table "order_items", force: true do |t|
@@ -62,7 +64,10 @@ ActiveRecord::Schema.define(version: 20160202101527) do
     t.string   "financial_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
+
+  add_index "orders", ["account_id"], name: "index_orders_on_account_id"
 
   create_table "products", force: true do |t|
     t.string   "name"
@@ -70,7 +75,10 @@ ActiveRecord::Schema.define(version: 20160202101527) do
     t.datetime "last_shopify_sync"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
+
+  add_index "products", ["account_id"], name: "index_products_on_account_id"
 
   create_table "variants", force: true do |t|
     t.integer  "product_id"

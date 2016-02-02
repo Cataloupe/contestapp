@@ -1,33 +1,42 @@
-Rails.application.routes.draw do
-  
-  resources :orders do
-    collection do
-      get 'import'
-    end
-  end 
+Contestapp::Application.routes.draw do
+
+  # Webhook routes
+  get "webhooks/uninstall"
+  post "webhooks/uninstall"
+
+  get "sessions/new"
+  post "sessions/create"
+  get "sessions/destroy"
 
   resources :products do
     collection do
       get 'import'
     end
     resources :variants
-  end 
-  
-  resources :accounts do
-    member do
-      get 'test_connection'
+  end
+
+  resources :orders do
+    collection do
+      get 'import'
     end
   end
-  
 
-  get 'dashboard/index'
-  # once index created, then kick off contest creation
-  post "create_contest" => "dashboard#create_contest"
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :contests
+
+  # Dashboard routes
+  get "dashboard/index"
+  post "create_contest" => 'dashboard#create_contest'
+  get "test_connection" => 'dashboard#test_connection'
+
+  # Shopify routes
+  get 'shopify/authorize' => 'shopify#authorize'
+  post 'shopify/authorize' => 'shopify#authorize'
+
+  get 'shopify/install' => 'shopify#install'
+  post 'shopify/install' => 'shopify#install'
+
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
   root 'dashboard#index'
 
   # Example of regular route:

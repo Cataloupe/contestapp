@@ -1,6 +1,7 @@
 class Contest < ActiveRecord::Base
 	belongs_to :order
 	validates_presence_of :name
+	belongs_to :account
 
 	def criteria
 		results = []

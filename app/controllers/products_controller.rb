@@ -2,30 +2,27 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
 
-# GET /products/import
-# GET /products/import.json
-def import
-  # For now we'll use the first account in the database
-  account = Account.first
+  # GET /products/import
+  # GET /products/import.json
+  def import
+    # Connect to Shopify
+    shopify_integration = ShopifyIntegration.new(
+      url: current_account.shopify_account_url,
+      password: current_account.shopify_password,
+      account_id: current_account.id
+    )
 
-  # Instantiate the ShopifyInegration class
-  shopify_integration = ShopifyIntegration.new(
-    url: account.shopify_account_url,
-    password: account.shopify_password)
-
-  respond_to do |format| shopify_integration.connect
-    result = shopify_integration.import_products
-    format.html { redirect_to ({action: :index}),
-    notice: "#{result[:created].to_i} created,
-      #{result[:updated]}
-      updated, #{result[:failed]} failed."}
+    respond_to do |format|
+      shopify_integration.connect
+      result = shopify_integration.import_products
+      format.html { redirect_to ({action: :index}), notice: "#{result[:created].to_i} created, #{result[:updated]} updated, #{result[:failed]} failed." }
     end
   end
   
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = current_account.products.all
   end
 
   # GET /products/1
@@ -35,7 +32,7 @@ def import
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = current_account.products.new
   end
 
   # GET /products/1/edit
@@ -45,7 +42,7 @@ def import
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = current_account.products.new(product_params)
 
     respond_to do |format|
       if @product.save
@@ -85,7 +82,7 @@ def import
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = current_account.products.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
