@@ -65,9 +65,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1/test_connection.json
   def test_connection
     # Connect to Shopify using our class
-    ShopifyIntegration.new(api_key: @account.shopify_api_key,
-                           shared_secret: @account.shopify_shared_secret,
-                           url: @account.shopify_account_url,
+    ShopifyIntegration.new(url: @account.shopify_account_url,
                            password: @account.shopify_password).connect()
     begin
       # The gem will throw an exception if unable to retrieve Shop information

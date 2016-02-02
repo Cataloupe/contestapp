@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Add in Shopify API details for dev shop
+  SHOPIFY_API_KEY = "07c8cb3aba51f745801975552b4dd573"
+  SHOPIFY_SHARED_SECRET = "3960c6fd98d02380f65f87280ceae56e"
+  DOMAIN = "https://07c8cb3aba51f745801975552b4dd573:67a9463b4c7bad4bfc47f4f505e0a97c@cataloupe.myshopify.com/admin/orders.json"
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

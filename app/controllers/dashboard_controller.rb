@@ -29,7 +29,7 @@ class DashboardController < ApplicationController
         # Save the winner        
         @contest.update_attribute(:order_id, contest_results.results)
 
-        format.html { redirect_to root_path, notice: "Contest Winner: <a href='#{order_path(@contest.order)}'>#{@contest.order.email}</a>" }
+        format.html { redirect_to root_path, notice: "Contest Winner: #{@contest.order.email}" }
         format.json { render action: 'show', status: :created, location: @contest }
 
       else

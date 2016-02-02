@@ -10,8 +10,6 @@ def import
 
   # Instantiate the ShopifyInegration class
   shopify_integration = ShopifyIntegration.new(
-    api_key: account.shopify_api_key,
-    shared_secret: account.shopify_shared_secret,
     url: account.shopify_account_url,
     password: account.shopify_password)
 
